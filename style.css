@@ -48,13 +48,17 @@
     border-radius: 10px;
 }
 
+.item > p:first-child {
+    margin-top: 1rem;
+}
+
 .item:hover{
     background-color:lightgray;
 }
 
 .img__item{
-    height: 150px;
-    width: 150px;
+    height: 110px;
+    width: 110px;
 }
 
 .item__focus_box{
