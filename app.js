@@ -18,7 +18,7 @@ async function getData (url) {
     // console.log(dataArray);
     return data.results
   }
-  // Non sono sicuro se va bene così
+  // Non sono sicuro se va bene così però ok
   catch (err) {
     console.log('error fetching data')
     return new Error(err)
