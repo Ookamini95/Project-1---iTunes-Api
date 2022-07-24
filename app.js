@@ -85,7 +85,7 @@ document.addEventListener("keydown", event => {
 collectionBox.addEventListener("click", event => {
     const item = event.target.closest(".item")
     const index = item.dataset.index
-    // loadOnFocus(dataArray[index]); WORKING!!
+    loadOnFocus(dataArray[index]); //WORKING!!
     toggleFocus();
     // console.log(dataArray[index])
 
