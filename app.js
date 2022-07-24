@@ -85,6 +85,7 @@ document.addEventListener("keydown", event => {
 collectionBox.addEventListener("click", event => {
     const item = event.target.closest(".item")
     const index = item.dataset.index
+    console.log(dataArray);
     loadOnFocus(dataArray[index]); //WORKING!!
     toggleFocus();
     // console.log(dataArray[index])
@@ -104,3 +105,4 @@ inputForm.addEventListener(`submit`, event => {
 // Additional TODOs
 //TODO: hover on text
 //TODO: fail to fetch => print
+//TODO: stop music when toggle
