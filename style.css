@@ -44,21 +44,18 @@
     align-items: center;
     height: 250px;
     width: 250px;
-    background-color: grey;
+    background-color: rgb(171, 167, 167);
     border-radius: 10px;
 }
 
-.item > p:first-child {
-    margin-top: 1rem;
-}
 
 .item:hover{
     background-color:lightgray;
 }
 
 .img__item{
-    height: 110px;
-    width: 110px;
+    height: 150px;
+    width: 150px;
 }
 
 .item__focus_box{
