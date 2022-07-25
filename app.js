@@ -28,6 +28,7 @@ async function getData(url) {
   }
 }
 
+//fixed
 function search([name, _, type, num]) {
   const url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${name}`
   getData(url)
