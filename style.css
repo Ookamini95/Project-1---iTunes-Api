@@ -36,6 +36,8 @@
     border: none
 }
 
+
+
 /* COLLECTION BOX */
 
 .collection__box{
@@ -130,4 +132,13 @@
 
 .misc-text{
     font-size: 3rem;
+}
+
+.misc__btn{
+    height: 2rem;
+    width: 5rem;
+    padding: 5px;
+    margin-left: 10px;
+    background-color:aliceblue;
+    border: none;
 }
