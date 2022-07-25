@@ -110,6 +110,12 @@ function loadOnFocus(data) {
           </td>
           <td>
               <audio src="${data.previewUrl}" class="audio_box" controls></audio>
+              
+          </td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>
               <input type="text" value="${data.previewUrl}" class="element__entry_value" readonly>
           </td>
       </tr>
@@ -146,7 +152,7 @@ function loadOnFocus(data) {
 /// / Helper functions
 function toggleFocus() {
   itemFocus.classList.toggle('hidden')
-  searchBox.classList.toggle('hidden')
+  // searchBox.classList.toggle('hidden')
   quitBtn.classList.toggle('hidden')
 }
 
