@@ -28,7 +28,7 @@ async function getData(url) {
   }
 }
 
-function search([name, type, num]) {
+function search([name, _, type, num]) {
   const url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${name}`
   getData(url)
     .then(dataObj => {
@@ -178,10 +178,12 @@ collectionBox.addEventListener('click', event => {
 /// /  Search bar
 inputForm.addEventListener('submit', event => {
   event.preventDefault()
+  console.log(event)
   collectionBox.innerHTML = ''
   loadingQuery.classList.toggle('hidden')
   errorQuery.classList.add('hidden')
   const queryInput = [...event.target].map(key => key.value)
+  console.log(queryInput)
   search(queryInput)
   event.target[0].value = ''
 })
