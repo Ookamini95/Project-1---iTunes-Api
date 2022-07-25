@@ -14,7 +14,25 @@
 <body>
 
     <div class="item__focus_box hidden">
-        <!-- <img src="test.jpg" class="img__item img__focus"> -->
+        <h3>Details:</h3>
+        <div class="element__focus_box">
+            <table>
+                <tr>
+                    <td>
+                        <img src="test.jpg" class="img__item img__focus">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p class="element__entry">Artist</p>
+                    </td>
+                    <td>
+                        <input type="text" value="test" class="element__entry_value" readonly>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <div class="search__box">
@@ -45,6 +63,11 @@
             </form>
         </div>
 
+        <center>
+            <p class="loading misc-text hidden">Loading...</p>
+            <p class="error misc-text hidden">Error finding song...</p>
+        </center>
+
         <div class="collection__box">
             <!-- <div class="item">
                 <img src="test.jpg" class="img__item">
@@ -54,9 +77,8 @@
             </div> -->
         </div>
     </div>
-    <!--  TODO: Remove temp button -->
-    <button class="test">Test button</button>
     </div>
+    <button class="quit_btn hidden">Chiudi</button>
 </body>
 
 </html>
