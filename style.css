@@ -38,7 +38,7 @@
 
 
 
-/* COLLECTION BOX */
+/* COLLECTION BOX _*/
 
 .collection__box{
     grid-template-columns : repeat(5,1fr);

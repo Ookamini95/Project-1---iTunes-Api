@@ -5,6 +5,7 @@ const searchBox = document.querySelector('.search__box')
 const inputForm = document.querySelector('.search__form')
 const collectionBox = document.querySelector('.collection__box')
 const focusBox = document.querySelector('.element__focus_box')
+const moreResBtn = document.querySelector('.more-results')
 
 const loadingQuery = document.querySelector('.loading')
 const errorQuery = document.querySelector('.error')
@@ -12,13 +13,16 @@ const errorQuery = document.querySelector('.error')
 // Variables
 let dataArray = []
 
+let queryInfo = []
+let offsetValue = 0
+// test
 // Functions
 async function getData(url) {
   try {
     const response = await fetch(url)
     const data = await response.json()
-    dataArray = data.results
-    console.log(!Boolean(data.results))
+    data.results.forEach((item) => dataArray.push(item))
+    //console.log(data)
     if (data.results === undefined || !data.results[0]) throw new Error('No item found')
     return data.results
   } catch (err) {
@@ -29,12 +33,12 @@ async function getData(url) {
 }
 
 //fixed
-function search([name, _, type, num]) {
-  const url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${name}`
+function search([query,_,type,num], offset=0, index=0) {
+  const url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
   getData(url)
     .then(dataObj => {
       // console.log(dataObj);
-      showCollection(dataObj)
+      showCollection(dataObj,index)
       return dataObj
     })
     .catch(err => console.log(`Error: ${err.message}`))
@@ -44,17 +48,24 @@ function search([name, _, type, num]) {
   // console.log(data, data[0].artistName, data[0].artworkUrl100, data[0].trackCensoredName
 }
 
-function showCollection(data) {
-  let index = 0
+function addMoreQueries () {
+  offsetValue +=5
+  loadingQuery.classList.toggle('hidden')
+  const index = dataArray.length
+  search(queryInfo, offsetValue, index)
+}
+
+function showCollection(data, index) {
   data.forEach(el => {
     const html = `
         <div class="item" data-index="${index}">
-            <img src="${el.artworkUrl100}" class="img__item">
+            <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
             <br>
             <p><strong>${el.artistName.slice(0, 30)}</strong></p>
             <p>${el.trackCensoredName}</p>
         </div>
         `
+
     index++
     collectionBox.insertAdjacentHTML('beforeend', html)
   })
@@ -68,7 +79,7 @@ function loadOnFocus(data) {
   <table>
       <tr>
           <td>
-              <img src="${data.artworkUrl100}" class="img__item img__focus">
+              <img src="${data.artworkUrl100}" alt="artwork img" class="img__item img__focus">
           </td>
       </tr>
 
@@ -189,14 +200,23 @@ inputForm.addEventListener('submit', event => {
     event.target[0].value = ''
     return
   }
+  // Reset
+  offsetValue = 0
+  dataArray = []
   collectionBox.innerHTML = ''
+  // ClassList
+  moreResBtn.classList.remove('hidden')
   errorQuery.classList.add('hidden')
   loadingQuery.classList.toggle('hidden')
   const queryInput = [...event.target].map(key => key.value)
   // console.log(queryInput)
+  queryInfo = queryInput
   search(queryInput)
   event.target[0].value = ''
 })
 
+moreResBtn.addEventListener('click', addMoreQueries)
+
 // TODOs
 // TODO: hover on text
+
