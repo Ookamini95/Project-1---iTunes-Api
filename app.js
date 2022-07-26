@@ -20,6 +20,7 @@ let queryInfo = []
 let offsetValue = 0
 let checkBoxArtist
 let checkBoxAlbum
+let checkBoxLoop
 // test
 // Functions
 async function getData(url) {
@@ -56,6 +57,16 @@ function search([query, _, type, num], offset = 0, index = 0) {
 
   // console.log(data, data[0].artistName, data[0].artworkUrl100, data[0].trackCensoredName
 }
+
+// obviously it bugs out a lot of the code
+function loopSearchFunction([query, _, type, num], offset = 0, index = 0) {
+  num = 50
+  for (let i = 0; i < 1000; i++) {
+    search([query, _, type, num], offset, index)
+    offset += 50
+  }
+}
+
 
 function addMoreQueries() {
   if (checkBox) offsetValue += 45
@@ -224,6 +235,7 @@ function dateCompare(a, b) {
   return 0
 }
 
+
 // Event Listeners
 /// /  Focus box
 /// // Misc
@@ -270,7 +282,8 @@ inputForm.addEventListener('submit', event => {
   const queryInput = [...event.target].map(key => key.value)
   // console.log(queryInput)
   queryInfo = queryInput
-  search(queryInput)
+  if (!checkBoxLoop) { search(queryInput) }
+  else { loopSearchFunction(queryInput) }
   event.target[0].value = ''
 })
 
@@ -287,7 +300,12 @@ orderResBtn.addEventListener('click', orderResults)
 const deepSearch = document.querySelector('#deep-search')
 deepSearch.addEventListener('change', function () {
 
-  checkBox = this.checked
+  checkBoxLoop = this.checked
+})
+
+const loopSearch = document.querySelector('#loop-search')
+loopSearch.addEventListener('change', function () {
+  checkBoxLoop = this.checked
 })
 
 const albumSearch = document.querySelector('#album-search')
