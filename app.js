@@ -65,6 +65,8 @@ function loopSearchFunction([query, _, type, num], offset = 0, index = 0) {
     search([query, _, type, num], offset, index)
     offset += 50
   }
+  errorQuery.classList.add('hidden')
+  loadingQuery.classList.add('hidden')
 }
 
 
