@@ -8,6 +8,8 @@ const focusBox = document.querySelector('.element__focus_box')
 const moreResBtn = document.querySelector('.more-results')
 const orderResBtn = document.querySelector('.order-results')
 
+const filterForm = document.querySelector('.filter-form')
+
 const loadingQuery = document.querySelector('.loading')
 const errorQuery = document.querySelector('.error')
 
@@ -70,6 +72,15 @@ function dateCompare(a, b) {
 function orderResults() {
   let collectionArray = [...collectionBox.children].sort(dateCompare)
   console.log(collectionArray)
+  collectionArray.forEach(item => collectionBox.appendChild(item))
+}
+function filterSongs(value) {
+  console.log(value)
+  let collectionArray = [...collectionBox.children].filter(el => Number(el.dataset.date.split('-')[0]) === Number(value))
+  console.log(collectionArray)
+  // Number(el.dataset.date.split('-')[0]) === value
+  console.log(collectionArray)
+  collectionBox.innerHTML = ''
   collectionArray.forEach(item => collectionBox.appendChild(item))
 }
 
@@ -225,6 +236,7 @@ inputForm.addEventListener('submit', event => {
   // ClassList
   moreResBtn.classList.remove('hidden')
   orderResBtn.classList.remove('hidden')
+  filterForm.classList.remove('hidden')
   errorQuery.classList.add('hidden')
   loadingQuery.classList.toggle('hidden')
   const queryInput = [...event.target].map(key => key.value)
@@ -232,6 +244,11 @@ inputForm.addEventListener('submit', event => {
   queryInfo = queryInput
   search(queryInput)
   event.target[0].value = ''
+})
+
+filterForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  filterSongs(e.target[0].value)
 })
 
 moreResBtn.addEventListener('click', addMoreQueries)
