@@ -185,12 +185,15 @@ collectionBox.addEventListener('click', event => {
 /// /  Search bar
 inputForm.addEventListener('submit', event => {
   event.preventDefault()
-  console.log(event)
+  if (!event.target[0].value.trim()) {
+    event.target[0].value = ''
+    return
+  }
   collectionBox.innerHTML = ''
-  loadingQuery.classList.toggle('hidden')
   errorQuery.classList.add('hidden')
+  loadingQuery.classList.toggle('hidden')
   const queryInput = [...event.target].map(key => key.value)
-  console.log(queryInput)
+  // console.log(queryInput)
   search(queryInput)
   event.target[0].value = ''
 })
