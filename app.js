@@ -33,12 +33,12 @@ async function getData(url) {
 }
 
 //fixed
-function search([query,_,type,num], offset=0, index=0) {
+function search([query, _, type, num], offset = 0, index = 0) {
   const url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
   getData(url)
     .then(dataObj => {
       // console.log(dataObj);
-      showCollection(dataObj,index)
+      showCollection(dataObj, index)
       return dataObj
     })
     .catch(err => console.log(`Error: ${err.message}`))
@@ -48,8 +48,8 @@ function search([query,_,type,num], offset=0, index=0) {
   // console.log(data, data[0].artistName, data[0].artworkUrl100, data[0].trackCensoredName
 }
 
-function addMoreQueries () {
-  offsetValue +=5
+function addMoreQueries() {
+  offsetValue += 5
   loadingQuery.classList.toggle('hidden')
   const index = dataArray.length
   search(queryInfo, offsetValue, index)
@@ -219,5 +219,3 @@ moreResBtn.addEventListener('click', addMoreQueries)
 
 // TODOs
 // TODO: hover on text
-
->>>>>>> 64b06c21aca91c13f64587548bda12952184ee6c
