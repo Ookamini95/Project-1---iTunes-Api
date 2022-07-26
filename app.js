@@ -15,7 +15,7 @@ const errorQuery = document.querySelector('.error')
 
 // Variables
 let dataArray = []
-
+let checkBox
 let queryInfo = []
 let offsetValue = 0
 // test
@@ -37,11 +37,13 @@ async function getData(url) {
 
 //fixed
 function search([query, _, type, num], offset = 0, index = 0) {
+  if (checkBox) num = 50
   const url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
   getData(url)
     .then(dataObj => {
       // console.log(dataObj);
-      showCollection(dataObj, index)
+      // if(checkBox)
+      showCollection(dataObj, index, query)
       return dataObj
     })
     .catch(err => console.log(`Error: ${err.message}`))
@@ -76,9 +78,11 @@ function filterSongs(value) {
   collectionArray.forEach(item => collectionBox.appendChild(item))
 }
 
-function showCollection(data, index) {
-  data.forEach(el => {
-    const html = `
+function showCollection(data, index, key) {
+
+  if (!checkBox) {
+    data.forEach(el => {
+      const html = `
         <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
             <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
             <br>
@@ -87,9 +91,25 @@ function showCollection(data, index) {
         </div>
         `
 
-    index++
-    collectionBox.insertAdjacentHTML('beforeend', html)
-  })
+      index++
+      collectionBox.insertAdjacentHTML('beforeend', html)
+    })
+  }
+  else {
+    data.filter(el => el.trackCensoredName.toLowerCase().includes(`${key}`)).forEach(el => {
+      const html = `
+        <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
+            <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
+            <br>
+            <p><strong>${el.artistName.slice(0, 24)}</strong></p>
+            <p>${el.trackCensoredName}</p>
+        </div>
+        `
+
+      index++
+      collectionBox.insertAdjacentHTML('beforeend', html)
+    })
+  }
 }
 
 // TODO: Focus box implementation
@@ -259,3 +279,7 @@ orderResBtn.addEventListener('click', orderResults)
 
 // TODOs
 // TODO: hover on text
+const deepSearch = document.querySelector('#deep-search')
+deepSearch.addEventListener('change', function () {
+  checkBox = this.checked
+})
