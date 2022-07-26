@@ -18,6 +18,8 @@ let dataArray = []
 let checkBox
 let queryInfo = []
 let offsetValue = 0
+let checkBoxArtist
+let checkBoxAlbum
 // test
 // Functions
 async function getData(url) {
@@ -38,7 +40,9 @@ async function getData(url) {
 //fixed
 function search([query, _, type, num], offset = 0, index = 0) {
   if (checkBox) num = 50
-  const url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
+  let url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
+  if (checkBoxArtist) url += '&attribute=artistTerm'
+  if (checkBoxAlbum) url += '&entity=allTrack&attribute=songTerm'
   getData(url)
     .then(dataObj => {
       // console.log(dataObj);
@@ -282,5 +286,18 @@ orderResBtn.addEventListener('click', orderResults)
 // TODO: hover on text
 const deepSearch = document.querySelector('#deep-search')
 deepSearch.addEventListener('change', function () {
+
   checkBox = this.checked
+})
+
+const albumSearch = document.querySelector('#album-search')
+albumSearch.addEventListener('change', function () {
+
+  checkBoxAlbum = this.checked
+})
+
+const artistSearch = document.querySelector('#artist-search')
+artistSearch.addEventListener('change', function () {
+
+  checkBoxArtist = this.checked
 })
