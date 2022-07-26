@@ -54,6 +54,7 @@ function search([query, _, type, num], offset = 0, index = 0) {
 }
 
 function addMoreQueries() {
+  if (checkBox) offsetValue += 45
   offsetValue += 5
   loadingQuery.classList.toggle('hidden')
   const index = dataArray.length
