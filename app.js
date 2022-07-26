@@ -74,6 +74,7 @@ function orderResults() {
   console.log(collectionArray)
   collectionArray.forEach(item => collectionBox.appendChild(item))
 }
+
 function filterSongs(value) {
   console.log(value)
   let collectionArray = [...collectionBox.children].filter(el => Number(el.dataset.date.split('-')[0]) === Number(value))
