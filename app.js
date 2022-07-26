@@ -15,12 +15,12 @@ const errorQuery = document.querySelector('.error')
 
 // Variables
 let dataArray = []
-let checkBox
+// let checkBox
 let queryInfo = []
 let offsetValue = 0
 let checkBoxArtist
 let checkBoxAlbum
-let checkBoxLoop
+// let checkBoxLoop
 // test
 // Functions
 async function getData(url) {
@@ -40,7 +40,7 @@ async function getData(url) {
 
 //fixed
 function search([query, _, type, num], offset = 0, index = 0) {
-  if (checkBox) num = 50
+  // if (checkBox) num = 50
   let url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
   if (checkBoxArtist) url += '&attribute=artistTerm'
   if (checkBoxAlbum) url += '&entity=allTrack&attribute=songTerm'
@@ -59,19 +59,19 @@ function search([query, _, type, num], offset = 0, index = 0) {
 }
 
 // obviously it bugs out a lot of the code
-function loopSearchFunction([query, _, type, num], offset = 0, index = 0) {
-  num = 50
-  for (let i = 0; i < 1000; i++) {
-    search([query, _, type, num], offset, index)
-    offset += 50
-  }
-  errorQuery.classList.add('hidden')
-  loadingQuery.classList.add('hidden')
-}
+// function loopSearchFunction([query, _, type, num], offset = 0, index = 0) {
+//   num = 50
+//   for (let i = 0; i < 1000; i++) {
+//     search([query, _, type, num], offset, index)
+//     offset += 50
+//   }
+//   errorQuery.classList.add('hidden')
+//   loadingQuery.classList.add('hidden')
+// }
 
 
 function addMoreQueries() {
-  if (checkBox) offsetValue += 45
+  // if (checkBox) offsetValue += 45
   offsetValue += 5
   loadingQuery.classList.toggle('hidden')
   const index = dataArray.length
@@ -98,36 +98,49 @@ function filterSongs(value) {
 
 function showCollection(data, index, key) {
 
-  if (!checkBox) {
-    data.forEach(el => {
-      const html = `
-        <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
-            <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
-            <br>
-            <p><strong>${el.artistName.slice(0, 24)}</strong></p>
-            <p>${el.trackCensoredName}</p>
-        </div>
-        `
+  // if (!checkBox) {
+  //   data.forEach(el => {
+  //     const html = `
+  //       <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
+  //           <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
+  //           <br>
+  //           <p><strong>${el.artistName.slice(0, 24)}</strong></p>
+  //           <p>${el.trackCensoredName}</p>
+  //       </div>
+  //       `
 
-      index++
-      collectionBox.insertAdjacentHTML('beforeend', html)
-    })
-  }
-  else {
-    data.filter(el => el.trackCensoredName.toLowerCase().includes(`${key}`)).forEach(el => {
-      const html = `
-        <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
-            <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
-            <br>
-            <p><strong>${el.artistName.slice(0, 24)}</strong></p>
-            <p>${el.trackCensoredName}</p>
-        </div>
-        `
+  //     index++
+  //     collectionBox.insertAdjacentHTML('beforeend', html)
+  //   })
+  // }
+  // else {
+  //   data.filter(el => el.trackCensoredName.toLowerCase().includes(`${key}`)).forEach(el => {
+  //     const html = `
+  //       <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
+  //           <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
+  //           <br>
+  //           <p><strong>${el.artistName.slice(0, 24)}</strong></p>
+  //           <p>${el.trackCensoredName}</p>
+  //       </div>
+  //       `
 
-      index++
-      collectionBox.insertAdjacentHTML('beforeend', html)
-    })
-  }
+  //     index++
+  //     collectionBox.insertAdjacentHTML('beforeend', html)
+  //   })
+  // }
+  data.forEach(el => {
+    const html = `
+      <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
+          <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
+          <br>
+          <p><strong>${el.artistName.slice(0, 24)}</strong></p>
+          <p>${el.trackCensoredName}</p>
+      </div>
+      `
+
+    index++
+    collectionBox.insertAdjacentHTML('beforeend', html)
+  })
 }
 
 // TODO: Focus box implementation
@@ -284,8 +297,9 @@ inputForm.addEventListener('submit', event => {
   const queryInput = [...event.target].map(key => key.value)
   // console.log(queryInput)
   queryInfo = queryInput
-  if (!checkBoxLoop) { search(queryInput) }
-  else { loopSearchFunction(queryInput) }
+  search(queryInput)
+  // if (!checkBoxLoop) { search(queryInput) }
+  // else { loopSearchFunction(queryInput) }
   event.target[0].value = ''
 })
 
@@ -299,16 +313,16 @@ orderResBtn.addEventListener('click', orderResults)
 
 // TODOs
 // TODO: hover on text
-const deepSearch = document.querySelector('#deep-search')
-deepSearch.addEventListener('change', function () {
+// const deepSearch = document.querySelector('#deep-search')
+// deepSearch.addEventListener('change', function () {
 
-  checkBoxLoop = this.checked
-})
+//   checkBox = this.checked
+// })
 
-const loopSearch = document.querySelector('#loop-search')
-loopSearch.addEventListener('change', function () {
-  checkBoxLoop = this.checked
-})
+// const loopSearch = document.querySelector('#loop-search')
+// loopSearch.addEventListener('change', function () {
+//   checkBoxLoop = this.checked
+// })
 
 const albumSearch = document.querySelector('#album-search')
 albumSearch.addEventListener('change', function () {
