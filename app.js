@@ -6,6 +6,7 @@ const inputForm = document.querySelector('.search__form')
 const collectionBox = document.querySelector('.collection__box')
 const focusBox = document.querySelector('.element__focus_box')
 const moreResBtn = document.querySelector('.more-results')
+const orderResBtn = document.querySelector('.order-results')
 
 const loadingQuery = document.querySelector('.loading')
 const errorQuery = document.querySelector('.error')
@@ -55,13 +56,30 @@ function addMoreQueries() {
   search(queryInfo, offsetValue, index)
 }
 
+function dateCompare(a, b) {
+  const date_a = a.dataset.date.split('-')
+  const date_b = b.dataset.date.split('-')
+
+  for (let i = 0; i < 3; i++) {
+    const diff = date_a[i] - date_b[i]
+    if (diff !== 0) return diff > 0 ? -1 : 1
+  }
+  return 0
+}
+
+function orderResults() {
+  let collectionArray = [...collectionBox.children].sort(dateCompare)
+  console.log(collectionArray)
+  collectionArray.forEach(item => collectionBox.appendChild(item))
+}
+
 function showCollection(data, index) {
   data.forEach(el => {
     const html = `
-        <div class="item" data-index="${index}">
+        <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
             <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
             <br>
-            <p><strong>${el.artistName.slice(0, 30)}</strong></p>
+            <p><strong>${el.artistName.slice(0, 24)}</strong></p>
             <p>${el.trackCensoredName}</p>
         </div>
         `
@@ -206,6 +224,7 @@ inputForm.addEventListener('submit', event => {
   collectionBox.innerHTML = ''
   // ClassList
   moreResBtn.classList.remove('hidden')
+  orderResBtn.classList.remove('hidden')
   errorQuery.classList.add('hidden')
   loadingQuery.classList.toggle('hidden')
   const queryInput = [...event.target].map(key => key.value)
@@ -216,6 +235,7 @@ inputForm.addEventListener('submit', event => {
 })
 
 moreResBtn.addEventListener('click', addMoreQueries)
+orderResBtn.addEventListener('click', orderResults)
 
 // TODOs
 // TODO: hover on text
