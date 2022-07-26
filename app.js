@@ -18,8 +18,7 @@ async function getData(url) {
     const response = await fetch(url)
     const data = await response.json()
     dataArray = data.results
-    // console.log(dataArray);
-    if (!data.results[0]) throw new Error('No item found')
+    if (Boolean(data.results) || data.results === undefined) throw new Error('No item found')
     return data.results
   } catch (err) {
     errorQuery.classList.toggle('hidden')
