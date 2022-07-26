@@ -11,7 +11,7 @@ const errorQuery = document.querySelector('.error')
 
 // Variables
 let dataArray = []
-
+// test
 // Functions
 async function getData(url) {
   try {
@@ -49,7 +49,7 @@ function showCollection(data) {
   data.forEach(el => {
     const html = `
         <div class="item" data-index="${index}">
-            <img src="${el.artworkUrl100}" class="img__item">
+            <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
             <br>
             <p><strong>${el.artistName.slice(0, 30)}</strong></p>
             <p>${el.trackCensoredName}</p>
@@ -68,7 +68,7 @@ function loadOnFocus(data) {
   <table>
       <tr>
           <td>
-              <img src="${data.artworkUrl100}" class="img__item img__focus">
+              <img src="${data.artworkUrl100}" alt="artwork img" class="img__item img__focus">
           </td>
       </tr>
 
