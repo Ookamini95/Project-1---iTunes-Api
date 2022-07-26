@@ -220,3 +220,4 @@ moreResBtn.addEventListener('click', addMoreQueries)
 // TODOs
 // TODO: hover on text
 
+>>>>>>> 64b06c21aca91c13f64587548bda12952184ee6c
