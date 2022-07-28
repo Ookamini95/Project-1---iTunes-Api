@@ -42,7 +42,7 @@
             <form class="search__form">
                 <input type="text" class="search__bar" placeholder="Search on iTunes">
                 <!-- added button -->
-                <input type="submit" class="misc__btn"></submit>
+
                 <select class="search__select element__type">
                     <option selected>Music</option>
                     <option>Movie</option>
@@ -61,17 +61,37 @@
                     <option value="15">15</option>
                     <option value="20">20</option>
                 </select>
+                <input type="submit" class="misc__btn big-btn"></submit>
                 <br>
                 <!-- <input type="checkbox" id="deep-search">
                 <label for="deep-search">Deep search</label>
                 <input type="checkbox" id="loop-search">
                 <label for="loop-search">Loop search</label> -->
-                <input type="radio" name="search" id="search">
-                <label for="search">Normal search</label>
-                <input type="radio" name="search" id="artist-search">
-                <label for="artist-search">Artist search</label>
-                <input type="radio" name="search" id="album-search">
-                <label for="album-search">Song search</label>
+
+                <div class="search-type">
+                    <label class="label-search-type">Search type</label>
+                    <div class="search-type-element">
+                        <input type="radio" name="search" class="radio" id="search" checked="checked">
+                        <label for="search">Normal</label>
+                    </div>
+                    <div class="search-type-element">
+                        <input type="radio" name="search" class="radio" id="artist-search">
+                        <label for="artist-search">Artist</label>
+                    </div>
+                    <div class="search-type-element">
+                        <input type="radio" name="search" class="radio" id="album-search">
+                        <label for="album-search">Song</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="more-options">
+            <button class="more-results misc__btn hidden"> More results</button>
+            <button class="order-results misc__btn hidden"> Order by date</button>
+            <form class="filter-form hidden">
+                <input type="tel" maxlength="4" placeholder="Type year">
+                <button class="Filter-results misc__btn"> Filter by year</button>
             </form>
         </div>
 
@@ -88,17 +108,11 @@
                 <p>Song name</p>
             </div> -->
         </div>
-        <button class="more-results misc__btn hidden"> Add more results!</button>
-        <button class="order-results misc__btn hidden"> Order by date!</button>
-        <form class="filter-form hidden">
-            <input type="tel" maxlength="4" placeholder="Type year">
-            <button class="Filter-results misc__btn"> Filter by year</button>
-        </form>
-        <hr>
+    </div>
+    </div>
+    <footer>
         <p>To KENPOKASMMA1982, with love</p>
-    </div>
-    </div>
-
+    </footer>
 </body>
 
 </html>

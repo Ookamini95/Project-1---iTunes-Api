@@ -12,6 +12,7 @@ const filterForm = document.querySelector('.filter-form')
 
 const loadingQuery = document.querySelector('.loading')
 const errorQuery = document.querySelector('.error')
+const footerCredit = document.querySelector('footer')
 
 // Variables
 let dataArray = []
@@ -39,7 +40,7 @@ async function getData(url) {
 }
 
 //fixed
-function search([query, _, type, num], offset = 0, index = 0) {
+function search([query, type, num], offset = 0, index = 0) {
   // if (checkBox) num = 50
   let url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
   if (checkBoxArtist) url += '&attribute=artistTerm'
@@ -74,6 +75,7 @@ function addMoreQueries() {
   // if (checkBox) offsetValue += 45
   offsetValue += 5
   loadingQuery.classList.toggle('hidden')
+  footerCredit.classList.add('hidden')
   const index = dataArray.length
   search(queryInfo, offsetValue, index)
 }
@@ -295,7 +297,7 @@ inputForm.addEventListener('submit', event => {
   errorQuery.classList.add('hidden')
   loadingQuery.classList.toggle('hidden')
   const queryInput = [...event.target].map(key => key.value)
-  // console.log(queryInput)
+  console.log(queryInput)
   queryInfo = queryInput
   search(queryInput)
   // if (!checkBoxLoop) { search(queryInput) }
@@ -335,3 +337,4 @@ artistSearch.addEventListener('change', function () {
 
   checkBoxArtist = this.checked
 })
+

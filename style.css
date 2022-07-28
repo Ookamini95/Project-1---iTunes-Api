@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -5,9 +7,20 @@
     font-family: 'Nunito Sans', sans-serif;
 }
 
+body {
+    width: 95vw;
+    height: 95vh;
+    position: relative;
+}
+
+
+footer {
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+}
 /* FONT IMPORT*/
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
 /* font-family: 'Nunito Sans', sans-serif; */
 
 /* SEARCH FORM */
@@ -36,6 +49,20 @@
     border: none
 }
 
+.search-type {
+    display: flex;
+    gap: 15px;
+}
+
+.radio{
+    display: inline-flex;
+    margin-top: -3px;
+    vertical-align: middle;
+}
+
+.label-search-type {
+    display: inline;
+}
 
 
 /* COLLECTION BOX _*/
@@ -47,6 +74,7 @@
     display: grid;
     row-gap: 2rem;
     column-gap: 1rem;
+    position: relative;
 }
 
 @media only screen and (max-width: 400px){
@@ -65,17 +93,28 @@
     width: 250px;
     background-color: rgb(171, 167, 167);
     border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+    text-overflow: clip;
+    text-align: center;
 }
 
 
 .item:hover{
     background-color:lightgray;
+    color: rgba(0, 0, 0, 0.6);
     cursor:pointer;
+}
+
+.item:hover img:nth-child(1) {
+    opacity: 0.6;
 }
 
 .img__item{
     height: 150px;
     width: 150px;
+    border-radius: 5px;
+    opacity: 0.9;
+    transition: all 0.5s ease-in-out;
 }
 
 /* FOCUS BOX */
@@ -135,10 +174,27 @@
 }
 
 .misc__btn{
+    display: inline-block;
+    box-sizing: content-box;
     height: 2rem;
-    width: 5rem;
+    width: auto;
     padding: 5px;
     margin: 10px;
     background-color:aliceblue;
     border: none;
+    cursor: pointer;
+    padding: 0 10px;
+    transition: all 1s ease;
+    text-align: center;
+}
+
+.misc__btn:hover {
+    box-shadow: 0px 0px 5px 10px rgb(227, 238, 247) inset;
+}
+
+
+.more-options {
+    display:flex;
+    justify-content: flex-end;
+    width: 100%;
 }
