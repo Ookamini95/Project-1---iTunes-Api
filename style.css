@@ -156,9 +156,6 @@ footer {
     margin : 1rem 0.5rem 0.5rem 1rem;
 }
 
-.hidden{
-    display: none;
-}
 
 
 /* MISC */
@@ -197,4 +194,8 @@ footer {
     display:flex;
     justify-content: flex-end;
     width: 100%;
+}
+
+.hidden{
+    display: none;
 }
