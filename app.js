@@ -75,7 +75,6 @@ function addMoreQueries() {
   // if (checkBox) offsetValue += 45
   offsetValue += 5
   loadingQuery.classList.toggle('hidden')
-  footerCredit.classList.add('hidden')
   const index = dataArray.length
   search(queryInfo, offsetValue, index)
 }
@@ -291,6 +290,7 @@ inputForm.addEventListener('submit', event => {
   dataArray = []
   collectionBox.innerHTML = ''
   // ClassList
+  footerCredit.classList.add('hidden')
   moreResBtn.classList.remove('hidden')
   orderResBtn.classList.remove('hidden')
   filterForm.classList.remove('hidden')
