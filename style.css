@@ -181,7 +181,7 @@ footer {
     background-color:aliceblue;
     border: none;
     cursor: pointer;
-    padding: 0 10px;
+    padding: 3px 10px;
     transition: all 0.6s ease;
     text-align: center;
 }
@@ -195,6 +195,10 @@ footer {
     display:flex;
     justify-content: flex-end;
     width: 100%;
+}
+
+.filter-form{
+    margin-top: 10px;
 }
 
 .hidden{
