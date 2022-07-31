@@ -40,49 +40,61 @@
 
         <div class="search__form_box">
             <form class="search__form">
-                <input type="text" class="search__bar" placeholder="Search on iTunes">
-                <!-- added button -->
 
-                <select class="search__select element__type">
-                    <option selected>Music</option>
-                    <option>Movie</option>
-                    <option>Podcast</option>
-                    <option value="musicVideo">Music and Video</option>
-                    <option>Audiobook</option>
-                    <option value="shortFilm">Short Film</option>
-                    <option value="tvShow">TV Show</option>
-                    <option>Software</option>
-                    <option>Ebook</option>
-                    <option>All</option>
-                </select>
-                <select class="search__select elemet__number">
+                <div class="flx">
+                    <div class="flx-1">
+
+                        <input type="text" class="search__bar" placeholder="Search on iTunes">
+                        <div class="flx-3">
+
+                            <div class="search-type">
+                                <label class="label-search-type">Search type</label>
+                                <div class="search-type-element">
+                                    <input type="radio" name="search" class="radio" id="search" checked="checked">
+                                    <label for="search">Normal</label>
+                                </div>
+                                <div class="search-type-element">
+                                    <input type="radio" name="search" class="radio" id="artist-search">
+                                    <label for="artist-search">Artist</label>
+                                </div>
+                                <div class="search-type-element">
+                                    <input type="radio" name="search" class="radio" id="album-search">
+                                    <label for="album-search">Song</label>
+                                </div>
+                            </div>
+                            <input type="submit" class="misc__btn big-btn"></submit>
+                        </div>
+
+                    </div>
+                    <div class="flx-2">
+                        <select class="search__select element__type">
+                            <option selected>Music</option>
+                            <option>Movie</option>
+                            <option>Podcast</option>
+                            <option value="musicVideo">Music and Video</option>
+                            <option>Audiobook</option>
+                            <option value="shortFilm">Short Film</option>
+                            <option value="tvShow">TV Show</option>
+                            <option>Software</option>
+                            <option>Ebook</option>
+                            <option>All</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- <select class="search__select elemet__number">
                     <option selected value="5">5</option>
                     <option value="10">10</option>
                     <option value="15">15</option>
                     <option value="20">20</option>
-                </select>
-                <input type="submit" class="misc__btn big-btn"></submit>
+                </select> -->
                 <br>
                 <!-- <input type="checkbox" id="deep-search">
-                <label for="deep-search">Deep search</label>
-                <input type="checkbox" id="loop-search">
+                    <label for="deep-search">Deep search</label>
+                    <input type="checkbox" id="loop-search">
                 <label for="loop-search">Loop search</label> -->
 
-                <div class="search-type">
-                    <label class="label-search-type">Search type</label>
-                    <div class="search-type-element">
-                        <input type="radio" name="search" class="radio" id="search" checked="checked">
-                        <label for="search">Normal</label>
-                    </div>
-                    <div class="search-type-element">
-                        <input type="radio" name="search" class="radio" id="artist-search">
-                        <label for="artist-search">Artist</label>
-                    </div>
-                    <div class="search-type-element">
-                        <input type="radio" name="search" class="radio" id="album-search">
-                        <label for="album-search">Song</label>
-                    </div>
-                </div>
             </form>
         </div>
 
@@ -91,7 +103,6 @@
                 <input type="tel" maxlength="4" placeholder="Type year">
                 <button class="Filter-results misc__btn"> Filter by year</button>
             </form>
-            <button class="more-results misc__btn hidden"> More results</button>
             <button class="order-results misc__btn hidden"> Order by date</button>
         </div>
 
@@ -109,7 +120,9 @@
             </div> -->
         </div>
     </div>
-    </div>
+
+    <button class="more-results misc__btn hidden"> More results</button>
+    <div id="scroll-area"></div>
     <footer>
         <p>To KENPOKASMMA1982, with love</p>
     </footer>

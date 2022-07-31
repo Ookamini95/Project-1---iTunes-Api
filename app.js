@@ -40,9 +40,9 @@ async function getData(url) {
 }
 
 //fixed
-function search([query, type, num], offset = 0, index = 0) {
+function search([query, _, type], offset = 0, index = 0) {
   // if (checkBox) num = 50
-  let url = `https://itunes.apple.com/search?limit=${num}&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
+  let url = `https://itunes.apple.com/search?limit=50&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
   if (checkBoxArtist) url += '&attribute=artistTerm'
   if (checkBoxAlbum) url += '&entity=allTrack&attribute=songTerm'
   getData(url)
@@ -303,6 +303,8 @@ inputForm.addEventListener('submit', event => {
   // if (!checkBoxLoop) { search(queryInput) }
   // else { loopSearchFunction(queryInput) }
   event.target[0].value = ''
+  observerConstruct()
+  // moreResBtn.insertAdjacentHTML('afterend', '<div id="scroll-area">test</div>')
 })
 
 filterForm.addEventListener('submit', (e) => {
@@ -337,4 +339,25 @@ artistSearch.addEventListener('change', function () {
 
   checkBoxArtist = this.checked
 })
+
+let test = document.querySelector('#scroll-area')
+let options = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 1.0
+}
+
+let observer
+// = new IntersectionObserver((entry) => {
+//   console.log(entry[0].isIntersecting)
+// }, options);
+// observer.observe(test)
+
+function observerConstruct() {
+  observer = new IntersectionObserver((entry) => {
+    if (entry[0].isIntersecting) addMoreQueries();
+  }
+    , options);
+  observer.observe(test)
+}
 

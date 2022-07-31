@@ -177,7 +177,8 @@ footer {
     height: 2rem;
     width: auto;
     padding: 5px;
-    margin: 10px;
+    /* margin: 10px; */
+    margin-left: 100px;
     background-color:aliceblue;
     border: none;
     cursor: pointer;
@@ -201,4 +202,33 @@ footer {
 
 .hidden{
     display: none;
+}
+
+.flx {
+    display: flex;
+}
+
+.flx-1 {
+    display:flex;
+    flex-direction: column;
+}
+
+.flx-2 {
+    display:flex;
+    /* flex-direction: column; */
+}
+
+.flx-3 {
+    display:flex;
+
+    justify-content: space-between;
+}
+
+/* .search-type {
+    margin-right: auto;
+} */
+
+.big-btn {
+    margin-top: 10px;
+    
 }
