@@ -243,6 +243,12 @@ footer {
     align-items: center;
 }
 
+
+.filter-results {
+    margin-left: 30%;
+    margin-top: 8px;
+}
+
 @media screen and (max-width: 400px) {
     .search__select{
         margin-left: 2px;
