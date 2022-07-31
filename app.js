@@ -40,7 +40,7 @@ async function getData(url) {
 }
 
 //fixed
-function search([query, _, type], offset = 0, index = 0) {
+function search([query, _, _1, _2, _3, type], offset = 0, index = 0) {
   // if (checkBox) num = 50
   let url = `https://itunes.apple.com/search?limit=50&media=${type.toLowerCase()}&term=${query}&offset=${offset}`
   if (checkBoxArtist) url += '&attribute=artistTerm'
@@ -131,7 +131,7 @@ function showCollection(data, index, key) {
   // }
   data.forEach(el => {
     const html = `
-      <div class="item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
+      <div class="item grid-item" data-index="${index}" data-date=${el.releaseDate.split('T')[0]}>
           <img src="${el.artworkUrl100}" alt="artwork img" class="img__item">
           <br>
           <p><strong>${el.artistName.slice(0, 24)}</strong></p>
@@ -356,6 +356,7 @@ let observer
 function observerConstruct() {
   observer = new IntersectionObserver((entry) => {
     if (entry[0].isIntersecting) addMoreQueries();
+    console.log('work')
   }
     , options);
   observer.observe(test)
