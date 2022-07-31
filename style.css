@@ -253,6 +253,7 @@ footer {
         padding-left: 0;
         width: 80%;
         margin: auto;
+        margin-bottom: 10px;
     }
 
     .search-type {
